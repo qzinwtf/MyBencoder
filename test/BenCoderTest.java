@@ -19,6 +19,8 @@ public class BenCoderTest {
 	@Test
 	public void listTest() {
 
+		String expectedString  = "li55ei60ei70e5:hello3:how3:are3:youe";
+		
 		Element<Long> longElement1 = new LongElement(55L);
 
 		Element<Long> longElement2 = new LongElement(60L);
@@ -39,11 +41,15 @@ public class BenCoderTest {
 
 		ListElement listElement = new ListElement(list);
 
+		
+		Assert.assertTrue(listElement.encode().equalsIgnoreCase(expectedString));
 	}
 
 	@Test
 	public void mapTest() {
 
+		String expectedString = "d9:stringKeyli55ei60ei70e5:hello3:how3:are3:youee";
+		
 		Element<Long> longElement1 = new LongElement(55L);
 
 		Element<Long> longElement2 = new LongElement(60L);
@@ -71,6 +77,8 @@ public class BenCoderTest {
 		map.put(stringKey, listElement);
 
 		DictionaryElement dictionaryElement = new DictionaryElement(map);
+		
+		Assert.assertTrue(dictionaryElement.encode().equalsIgnoreCase(expectedString));
 
 	}
 
@@ -81,9 +89,8 @@ public class BenCoderTest {
 
 		String expectedString = "testString";
 
-		SourceString sourceString = new SourceString();
-		sourceString.setSourceString(inputString);
-		sourceString.setIndex(0);
+		SourceString sourceString = new SourceString(inputString,0);
+		
 
 		String result = StringElement.decode(sourceString).getValue();
 
@@ -97,9 +104,8 @@ public class BenCoderTest {
 		String inputString = "i15251e";
 		Long expectedLong = 15251L;
 
-		SourceString sourceString = new SourceString();
-		sourceString.setSourceString(inputString);
-		sourceString.setIndex(0);
+		SourceString sourceString = new SourceString(inputString,0);
+		
 		Long result = LongElement.decode(sourceString).getValue();
 
 		Assert.assertEquals(expectedLong, result);
@@ -108,14 +114,11 @@ public class BenCoderTest {
 
 	@Test
 	public void decodeTest() {
-
-		SourceString sourceString = new SourceString();
-
 		String expectedString = "d3:bar4:spam3:fooi42ee";
+		SourceString sourceString = new SourceString(expectedString,0);
 
-		sourceString.setSourceString(expectedString);
-		sourceString.setIndex(0);
 
+		
 		Element<?> element = Decoder.decode(sourceString);
 
 		Assert.assertEquals(expectedString, element.encode());

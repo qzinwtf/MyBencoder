@@ -2,7 +2,7 @@ package ru.nkuzin.bencode.element;
 
 import ru.nkuzin.bencode.SourceString;
 
-public class LongElement extends Element<Long> {
+public class LongElement extends Element<Long>  {
 	private static final String INTEGER_START = "i";
 	private static final String INTEGER_END = "e";
 	

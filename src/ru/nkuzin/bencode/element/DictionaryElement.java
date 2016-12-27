@@ -47,10 +47,7 @@ public class DictionaryElement extends Element<Map<StringElement,Element<?>>> {
 			
 			StringElement key = StringElement.decode(sourceString);
 			
-			System.out.println("key :: "+key.getValue());
 			Element<?> value = Decoder.decode(sourceString);
-			
-			System.out.println("value :: "+value.getValue());
 			
 			map.put(key, value);
 			

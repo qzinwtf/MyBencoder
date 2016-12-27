@@ -1,11 +1,9 @@
 package ru.nkuzin.bencode.element;
 
-public abstract class Element<V> {
+public abstract  class Element<V> implements Encodable {
 
 	protected  V value;
-	public abstract String encode(); /// то, что превращает в формат bencode
-	
-	
+
 	public V getValue() {
 		return value;
 	}

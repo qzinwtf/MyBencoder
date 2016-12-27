@@ -4,6 +4,13 @@ public class SourceString {
 
 	private String sourceString;
 	private Integer index;
+	
+	public SourceString(String sourceString,Integer index){
+		
+		this.sourceString = sourceString;
+		this.index = index;
+	}
+	
 	public String getSourceString() {
 		return sourceString;
 	}
@@ -17,7 +24,7 @@ public class SourceString {
 		this.index = index;
 	}
 	
-	public char getFirstLetter(){
+	public char getCurrentLetter(){
 		
 		return sourceString.charAt(index);
 	}

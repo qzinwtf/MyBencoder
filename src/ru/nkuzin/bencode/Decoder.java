@@ -9,10 +9,7 @@ import ru.nkuzin.bencode.element.StringElement;
 public class Decoder {
 
 	public static Element<?> decode(SourceString sourceString) {
-
-		char firstLetter = sourceString.getFirstLetter();
-
-		switch (firstLetter) {
+		switch (sourceString.getCurrentLetter()) {
 
 		
 		case '1':
