@@ -1,4 +1,4 @@
-package ru.nkuzin.bencode;
+package ru.nkuzin.bencode.element;
 
 public abstract class Element<V> {
 
