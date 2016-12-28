@@ -7,7 +7,6 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 
-import ru.nkuzin.bencode.Decoder;
 import ru.nkuzin.bencode.SourceString;
 import ru.nkuzin.bencode.element.Element;
 import ru.nkuzin.bencode.element.complex.DictionaryElement;
@@ -113,16 +112,5 @@ public class BenCoderTest {
 
 	}
 
-	@Test
-	public void decodeTest() throws Exception {
-		String expectedString = "d3:bar4:spam3:fooi42ee";
-		SourceString sourceString = new SourceString(expectedString,0);
 
-
-		
-		Element<?> element = Decoder.decode(sourceString);
-
-		Assert.assertEquals(expectedString, element.encode());
-
-	}
 }
