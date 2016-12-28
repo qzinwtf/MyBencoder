@@ -1,7 +1,13 @@
-package ru.nkuzin.bencode.element;
+package ru.nkuzin.bencode.element.simple;
 
 import ru.nkuzin.bencode.SourceString;
+import ru.nkuzin.bencode.element.Element;
 
+/**
+ * Содержит строку bencode
+ * @author nkuzin
+ *
+ */
 public class StringElement extends Element<String> {
 
 	private static final String COLON = ":";
@@ -17,6 +23,11 @@ public class StringElement extends Element<String> {
 		return value.length()+COLON+value;
 	}
 
+	/**
+	 * Десериализация в объект
+	 * @param sourceString
+	 * @return
+	 */
 	public static StringElement decode(SourceString sourceString) {
 
 		int colonIndex = sourceString.getSourceString().indexOf(COLON,sourceString.getIndex());

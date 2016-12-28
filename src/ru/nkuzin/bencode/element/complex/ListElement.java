@@ -1,22 +1,27 @@
-package ru.nkuzin.bencode.element;
+package ru.nkuzin.bencode.element.complex;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ru.nkuzin.bencode.Decoder;
 import ru.nkuzin.bencode.SourceString;
-
-public class ListElement extends Element<List<Element<?>>>  {
+import ru.nkuzin.bencode.element.Element;
+/**
+ * Содержит список элементов bencode
+ * @author nkuzin
+ *
+ */
+public class ListElement extends Element<List<Element<?>>> {
 
 	private static final char LIST_START = 'l';
 	private static final char LIST_END = 'e';
-	
-	public ListElement(List<Element<?>> value){
-		
+
+	public ListElement(List<Element<?>> value) {
+
 		this.value = value;
-		
+
 	}
-	
+
 	@Override
 	public String encode() {
 
@@ -29,20 +34,24 @@ public class ListElement extends Element<List<Element<?>>>  {
 
 		return stringBuilder.toString();
 	}
-	
-	
+
 	public static ListElement decode(SourceString sourceString) {
 
-		sourceString.setIndex(sourceString.getIndex()+1);
+		sourceString.setIndex(sourceString.getIndex() + 1);
 		List<Element<?>> list = new ArrayList<Element<?>>();
+		try {
+			while (sourceString.getCurrentLetter() != LIST_END) {
 
-		while (sourceString.getCurrentLetter() != LIST_END) {
+				list.add(Decoder.decode(sourceString));
 
-			list.add(Decoder.decode(sourceString));
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
 		}
 
 		sourceString.setIndex(sourceString.getIndex() + 1);
-		
 
 		return new ListElement(list);
 

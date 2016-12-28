@@ -4,7 +4,7 @@ import ru.nkuzin.bencode.element.Element;
 
 public class App {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 
 		String someInputString = "d3:bar4:spam3:fooi42ee";
 		SourceString sourceString = new SourceString(someInputString, 0);

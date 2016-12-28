@@ -1,3 +1,4 @@
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -8,11 +9,11 @@ import org.junit.Test;
 
 import ru.nkuzin.bencode.Decoder;
 import ru.nkuzin.bencode.SourceString;
-import ru.nkuzin.bencode.element.DictionaryElement;
 import ru.nkuzin.bencode.element.Element;
-import ru.nkuzin.bencode.element.ListElement;
-import ru.nkuzin.bencode.element.LongElement;
-import ru.nkuzin.bencode.element.StringElement;
+import ru.nkuzin.bencode.element.complex.DictionaryElement;
+import ru.nkuzin.bencode.element.complex.ListElement;
+import ru.nkuzin.bencode.element.simple.IntegerElement;
+import ru.nkuzin.bencode.element.simple.StringElement;
 
 public class BenCoderTest {
 
@@ -21,11 +22,11 @@ public class BenCoderTest {
 
 		String expectedString  = "li55ei60ei70e5:hello3:how3:are3:youe";
 		
-		Element<Long> longElement1 = new LongElement(55L);
+		Element<BigInteger> longElement1 = new IntegerElement(new  BigInteger("55"));
 
-		Element<Long> longElement2 = new LongElement(60L);
+		Element<BigInteger> longElement2 = new IntegerElement(new  BigInteger("60"));
 
-		Element<Long> longElement3 = new LongElement(70L);
+		Element<BigInteger> longElement3 = new IntegerElement(new  BigInteger("70"));
 
 		Element<String> stringElement1 = new StringElement("hello");
 
@@ -50,11 +51,11 @@ public class BenCoderTest {
 
 		String expectedString = "d9:stringKeyli55ei60ei70e5:hello3:how3:are3:youee";
 		
-		Element<Long> longElement1 = new LongElement(55L);
+		Element<BigInteger> longElement1 = new IntegerElement(new  BigInteger("55"));
 
-		Element<Long> longElement2 = new LongElement(60L);
+		Element<BigInteger> longElement2 = new IntegerElement(new  BigInteger("60"));
 
-		Element<Long> longElement3 = new LongElement(70L);
+		Element<BigInteger> longElement3 = new IntegerElement(new  BigInteger("70"));
 
 		Element<String> stringElement1 = new StringElement("hello");
 
@@ -102,18 +103,18 @@ public class BenCoderTest {
 	public void decodeLongTest() {
 
 		String inputString = "i15251e";
-		Long expectedLong = 15251L;
+		BigInteger expectedLong = new BigInteger("15251");
 
 		SourceString sourceString = new SourceString(inputString,0);
 		
-		Long result = LongElement.decode(sourceString).getValue();
+		BigInteger result = IntegerElement.decode(sourceString).getValue();
 
 		Assert.assertEquals(expectedLong, result);
 
 	}
 
 	@Test
-	public void decodeTest() {
+	public void decodeTest() throws Exception {
 		String expectedString = "d3:bar4:spam3:fooi42ee";
 		SourceString sourceString = new SourceString(expectedString,0);
 
